@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,17 +19,21 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
+
+//Admin Route
+
+
+Route::controller(AdminController::class)->group(function (){
+    Route::get('/admin/logout', 'destroy')->name('admin.logout');
+});
+
+
 Route::get('/dashboard', function () {
-
-
-
-
-
-
     return view('Admin.index');
     // return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
+//Admin Route End
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
